@@ -1,0 +1,8 @@
+{
+  "pages": ["pages/index/index", "pages/sure/sure", "pages/player/player", "pages/vod/vod"],
+  "window": {
+    "navigationBarTitleText": "微吼云播放器小程序SDK-Demo"
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

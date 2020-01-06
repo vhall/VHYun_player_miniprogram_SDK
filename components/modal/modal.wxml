@@ -1,0 +1,17 @@
+<view class='mask' wx:if='{{show}}'>
+	<view class='modal-content'>
+		<input
+		 id='value'
+		 bindinput='getinput'
+		 type='text'
+		 value='{{value}}'
+		 placeholder="请输入弹幕"
+		 class="input"
+		/>
+		<view class='modal-btn-wrapper'>
+			<view class='cancel-btn' style='color:rgba(7,17,27,0.6)' bindtap='cancel'>取消</view>
+			<view class='confirm-btn' style='color:#13b5f5' bindtap='confirm'>确定</view>
+		</view>
+	</view>
+</view>
+

@@ -1,0 +1,16 @@
+var changeNum = function(num) {
+  return num.toFixed()
+}
+var format = function(params) {
+  var num = changeNum(params)
+  var min = Math.floor(num / 60)
+  var seconds = num % 60
+  seconds = seconds < 10 ? '0' + seconds : seconds
+  min = min < 10 ? '0' + min : min
+  return min + ':' + seconds
+}
+
+module.exports = {
+  changeNum: changeNum,
+  format: format
+}

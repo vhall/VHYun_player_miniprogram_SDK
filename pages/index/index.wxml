@@ -1,0 +1,15 @@
+<!-- pages/index.wxml -->
+<view class='container'>
+	<text>微吼云</text>
+	<view class='item'>
+		<button bindtap="gotoPlay">观看直播</button>
+	</view>
+	<view class='item'>
+		<button bindtap="gotoVod">观看点播</button>
+	</view>
+</view>
+<view class='input-view-all'>
+	<view>版本号：1.0.0</view>
+	<view>开发日期：2020-01-06</view>
+</view>
+
