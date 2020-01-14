@@ -4,6 +4,8 @@
 
 如果需求中有播放过程中音视频互相切换的需求时，鼓励使用 video 播放音频，但是需要自定义控制条 <br />
 鼓励使用 SDK 封装的方法，即使设置了 autoplay，在播放时也需要调用 SDK 的 play 方法，出页面的时候应当调用暂停或者停止或者销毁实例。
+使用 live-player 组件应当按照 demo 所示绑定 bindstatechange 和 bindnetstatus 并传入对应 sdk 事件
+使用 video 也应按照 demo 所示绑定对应的监听事件 bindplay、bindpause、bindEnd、bindError、bindwaiting 等并传入 sdk
 
 ### 目录结构
 
@@ -94,6 +96,10 @@ this.player.exitFullScreen(param)
 this.player.mute(param)
 // 截图
 this.player.snapshot(param)
+// bindstatechange 回调传入函数
+this.player.onStateChange(param)
+// bindnetstatus 回调传入函数
+this.player.onNetstatus(param)
 ```
 
 #### video 封装方法列表：名称、参数遵循[小程序开发文档](https://developers.weixin.qq.com/miniprogram/dev/component/live-player.html)
