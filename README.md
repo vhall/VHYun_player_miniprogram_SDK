@@ -7,6 +7,10 @@
 使用 live-player 组件应当按照 demo 所示绑定 bindstatechange 和 bindnetstatus 并传入对应 sdk 事件
 使用 video 也应按照 demo 所示绑定对应的监听事件 bindplay、bindpause、bindEnd、bindError、bindwaiting 等并传入 sdk
 
+### 扫码体验
+
+- ![](https://static.vhallyun.com/doc-images/5e1d31491d604_5e1d3149.jpg)
+
 ### 目录结构
 
 - index 为入口文件夹
