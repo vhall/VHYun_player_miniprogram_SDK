@@ -1,6 +1,6 @@
 // pages/player/player.js
 // import Player from '../../sdk/main'
-import Player from '../../minisdk/vhall-mpsdk-player-1.0.0'
+import Player from '../../minisdk/vhall-mpsdk-player-1.0.1'
 Page({
   /**
    * 页面的初始数据
@@ -45,14 +45,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.player && this.player.play()
+    // this.player && this.play  er.play()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    this.player && this.player.pause()
+    // this.player && this.player.pause()
   },
 
   /**
@@ -139,6 +139,13 @@ Page({
     this.playbackRate(this.data.rate[e.detail.value])
     this.setData({ rateIndex: e.detail.value })
   },
+  async getStreamUrl() {
+    const url = await this.player.getStreamUrl()
+    this.setData({ videoUrl: url, initialTime: this.data.currentTime }, () => {
+      this.player.play()
+      wx.showToast({ title: '已重新获取拉流地址并播放', icon: 'none' })
+    })
+  },
   // 播放
   play() {
     this.player.play()
@@ -153,6 +160,7 @@ Page({
     this.player.stop()
     this.setData({ showPlay: true, currentTime: 0, initialTime: 0 })
   },
+
   requestFullScreen(param) {
     this.player.requestFullScreen(param)
     this.setData({ isFullscreen: !this.data.isFullscreen })
@@ -175,6 +183,14 @@ Page({
   },
   hideStatusBar() {
     this.player.hideStatusBar()
+  },
+  enterpictureinpicture() {
+    wx.navigateTo({
+      url: '../next/next'
+    })
+  },
+  onEnterpictureinpicture() {
+    console.log('进入小窗')
   },
   onVideoPlay(e) {
     this.player.onVideoPlay(e)

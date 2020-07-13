@@ -96,6 +96,8 @@ this.player.exitFullScreen(param)
 this.player.mute(param)
 // 截图
 this.player.snapshot(param)
+//退出小窗
+this.player.exitPictureInPicture()
 // bindstatechange 回调传入函数
 this.player.onStateChange(param)
 // bindnetstatus 回调传入函数
@@ -119,6 +121,8 @@ this.player.exitFullScreen(param)
 this.player.seek(time)
 // 发送弹幕
 this.player.sendDanmu(param)
+//退出小窗
+this.player.exitPictureInPicture()
 // 倍速
 this.player.playbackRate(rate)
 // ios全屏显示状态栏

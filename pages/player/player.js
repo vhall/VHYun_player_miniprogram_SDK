@@ -1,6 +1,6 @@
 // pages/player/player.js
 // import Player from '../../sdk/main'
-import Player from '../../minisdk/vhall-mpsdk-player-1.0.0'
+import Player from '../../minisdk/vhall-mpsdk-player-1.0.1'
 Page({
   /**
    * 页面的初始数据
@@ -60,6 +60,23 @@ Page({
           THIS: this // 选填，仅用于选中自定义组件中的live-player，live-player不在自定义组件中可以不传
         },
         url => {
+          this.player.on('connected', () => {
+            console.log('视频开始播放')
+          })
+          this.player.on('reConnecting', () => {
+            wx.showToast({ title: '正在重连', icon: 'none' })
+          })
+          this.player.on('reConnectReady', url => {
+            this.initialParameters(url).then(() => {
+              this.player.play()
+            })
+          })
+          this.player.on('reConnected', () => {
+            wx.showToast({ title: '重连成功', icon: 'none' })
+          })
+          this.player.on('reConnectFail', () => {
+            wx.showToast({ title: '重连失败', icon: 'none' })
+          })
           resolve(url)
         },
         e => {
@@ -154,6 +171,11 @@ Page({
     }
     this.setData({ fullscreen: !this.data.fullscreen })
   },
+  enterpictureinpicture() {
+    wx.navigateTo({
+      url: '../next/next'
+    })
+  },
   // 播放
   play(param) {
     this.player.play(param)
@@ -195,14 +217,12 @@ Page({
   snapshot() {
     this.player.snapshot({
       success: res => {
-        console.log(res)
         this.savePoster(res.tempImagePath)
       }
     })
   },
   // 播放器状态变更
   onStateChange(wxevent) {
-    // console.log(e)
     this.player.onStateChange(wxevent)
   },
 
@@ -244,24 +264,33 @@ Page({
       }
     })
   },
+  testReconnect() {
+    this.setData({ videoUrl: this.data.videoUrl + '111' }, () => {
+      this.player.play()
+    })
+  },
+  async getStreamUrl() {
+    const url = await this.player.getStreamUrl()
+    this.setData({ videoUrl: url }, () => {
+      this.player.play()
+      wx.showToast({ title: '已重新获取拉流地址并播放', icon: 'none' })
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    this.player && this.player.play()
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-    this.player && this.player.pause()
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
+    this.stop()
     this.player.destory()
     this.player = null
   }

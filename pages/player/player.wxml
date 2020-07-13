@@ -8,6 +8,7 @@
 		 mode="live"
 		 bindstatechange="onStateChange"
 		 bindnetstatus="onNetstatus"
+		 picture-in-picture-mode="push"
 		>
 			<view class="switch" bind:tap="control">
 				<image src="../image/play.png" class="switch-image" wx:if="{{showControl}}" />
@@ -27,12 +28,15 @@
 		<button>清晰度选择：{{qualitys[qualitysIndex].name}}</button>
 	</picker>
 	<view class="player-switch-box">
-		<button size="mini" bind:tap="play">play</button>
-		<button size="mini" bind:tap="pause">pause</button>
-		<button size="mini" bind:tap="resume">resume</button>
-		<button size="mini" bind:tap="mute">mute</button>
-		<button size="mini" bind:tap="snapshot">snapshot</button>
-		<button size="mini" bind:tap="stop">stop</button>
+		<button size="mini" bind:tap="play">播放</button>
+		<button size="mini" bind:tap="pause">暂停</button>
+		<button size="mini" bind:tap="resume">恢复</button>
+		<button size="mini" bind:tap="stop">停止</button>
+		<button size="mini" bind:tap="mute">禁音</button>
+		<button size="mini" bind:tap="snapshot">截图</button>
+		<button size="mini" bind:tap="testReconnect">测试重连</button>
+		<button size="mini" bind:tap="getStreamUrl">更新地址</button>
+		<button size="mini" bind:tap="enterpictureinpicture">进入小窗</button>
 	</view>
 </page>
 

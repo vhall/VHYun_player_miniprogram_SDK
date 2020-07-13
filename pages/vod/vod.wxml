@@ -13,6 +13,8 @@
 		 binderror="onVideoError"
 		 bindwaiting="onVideoWaiting"
 		 bindtimeupdate="onTimeUpdate"
+		 bindenterpictureinpicture="onEnterpictureinpicture"
+		 picture-in-picture-mode="push"
 		 enable-danmu
 		 danmu-btn
 		 controls="{{false}}"
@@ -55,6 +57,8 @@
 	<view class="player-switch-box">
 		<button size="mini" bind:tap="stop">stop</button>
 		<button size="mini" bind:tap="showModel">发送弹幕</button>
+		<button size="mini" bind:tap="getStreamUrl">更新地址</button>
+		<button size="mini" bind:tap="enterpictureinpicture">进入小窗</button>
 	</view>
 	<modal show="{{showModel}}" bind:confirmModal="confirmModal" />
 </page>

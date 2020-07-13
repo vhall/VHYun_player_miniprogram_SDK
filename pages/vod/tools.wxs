@@ -1,7 +1,8 @@
-var changeNum = function(num) {
+var changeNum = function (num) {
   return num.toFixed()
 }
-var format = function(params) {
+var format = function (params) {
+  params = params == null ? 0 : params
   var num = changeNum(params)
   var min = Math.floor(num / 60)
   var seconds = num % 60
