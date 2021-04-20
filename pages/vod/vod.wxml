@@ -1,0 +1,65 @@
+<!-- pages/player/player.wxml -->
+<wxs src="./tools.wxs" module="tools" />
+<page>
+	<view class="player-box">
+		<video
+		 id="video-player"
+		 class="live-player"
+		 src="{{videoUrl}}"
+		 initial-time="{{initialTime}}"
+		 bindplay="onVideoPlay"
+		 bindpause="onVideoPause"
+		 bindended="onVideoEnd"
+		 binderror="onVideoError"
+		 bindwaiting="onVideoWaiting"
+		 bindtimeupdate="onTimeUpdate"
+		 bindenterpictureinpicture="onEnterpictureinpicture"
+		 picture-in-picture-mode="push"
+		 enable-danmu
+		 danmu-btn
+		 controls="{{false}}"
+		 show-fullscreen-btn="{{false}}"
+		>
+			<view class="auto-box" wx:if="{{isAuto}}">当前为音频播放</view>
+			<view class="control-box">
+				<view class="play-pause" bind:tap="controlButton">
+					<image src="../image/pause.png" wx:if="{{!showPlay}}" />
+					<image src="../image/play.png" wx:if="{{showPlay}}" />
+				</view>
+				<view class="slider-box">
+					<slider
+					 block-size="12"
+					 max="{{duration}}"
+					 value="{{currentTime}}"
+					 bindchange="sliderChange"
+					 bindchanging="sliderChanging"
+					/>
+				</view>
+				<view class="fullscreen">
+					<text>{{tools.format(currentTime)}}/{{tools.format(duration)}}</text>
+					<image src="../image/fullscreen.png" wx:if="{{!isFullscreen}}" bind:tap="fullscreen" />
+					<image src="../image/exitFullscreen.png" wx:if="{{isFullscreen}}" bind:tap="fullscreen" />
+				</view>
+			</view>
+		</video>
+	</view>
+	<picker
+	 bindchange="bindQualityChange"
+	 value="{{qualitysIndex}}"
+	 range="{{qualitys}}"
+	 range-key="name"
+	>
+		<button class="picker-button">清晰度选择：{{qualitys[qualitysIndex].name}}</button>
+	</picker>
+	<picker bindchange="bindRateChange" value="{{rateIndex}}" range="{{rate}}">
+		<button class="picker-button">倍速选择：{{rate[rateIndex]}}</button>
+	</picker>
+	<view class="player-switch-box">
+		<button size="mini" bind:tap="stop">stop</button>
+		<button size="mini" bind:tap="showModel">发送弹幕</button>
+		<button size="mini" bind:tap="getStreamUrl">更新地址</button>
+		<button size="mini" bind:tap="enterpictureinpicture">进入小窗</button>
+	</view>
+	<modal show="{{showModel}}" bind:confirmModal="confirmModal" />
+</page>
+

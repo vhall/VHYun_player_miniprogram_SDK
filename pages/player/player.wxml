@@ -1,0 +1,41 @@
+<!-- pages/player/player.wxml -->
+<page>
+	<view class="player-box">
+		<live-player
+		 id="live-player"
+		 class="live-player"
+		 src="{{videoUrl}}"
+		 mode="live"
+		 bindstatechange="onStateChange"
+		 bindnetstatus="onNetstatus"
+		 picture-in-picture-mode="push"
+		>
+			<view class="switch" bind:tap="control">
+				<image src="../image/play.png" class="switch-image" wx:if="{{showControl}}" />
+			</view>
+			<view class="fullscreen-box" bind:tap="fullscreenControl">
+				<image src="../image/fullscreen.png" wx:if="{{fullscreen}}" />
+				<image src="../image/exitFullscreen.png" wx:if="{{!fullscreen}}" />
+			</view>
+		</live-player>
+	</view>
+	<picker
+	 bindchange="bindPickerChange"
+	 value="{{qualitysIndex}}"
+	 range="{{qualitys}}"
+	 range-key="name"
+	>
+		<button>清晰度选择：{{qualitys[qualitysIndex].name}}</button>
+	</picker>
+	<view class="player-switch-box">
+		<button size="mini" bind:tap="play">播放</button>
+		<button size="mini" bind:tap="pause">暂停</button>
+		<button size="mini" bind:tap="resume">恢复</button>
+		<button size="mini" bind:tap="stop">停止</button>
+		<button size="mini" bind:tap="mute">静音</button>
+		<button size="mini" bind:tap="snapshot">截图</button>
+		<button size="mini" bind:tap="getStreamUrl">更新地址</button>
+		<button size="mini" bind:tap="enterpictureinpicture">进入小窗</button>
+	</view>
+</page>
+

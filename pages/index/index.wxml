@@ -1,0 +1,11 @@
+<!-- pages/index.wxml -->
+<view class='container'>
+	<text>微吼云</text>
+	<view class='item'>
+		<button bindtap="gotoPlay">观看直播</button>
+	</view>
+	<view class='item'>
+		<button bindtap="gotoVod">观看点播</button>
+	</view>
+</view>
+

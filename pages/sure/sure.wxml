@@ -1,0 +1,62 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+	<view class="item">
+		<span>appId</span>
+		<span class="input-span">
+			<input
+			 id="appId"
+			 bindinput="getinput"
+			 type="text"
+			 value="{{ appId }}"
+			/>
+		</span>
+	</view>
+	<view class="item">
+		<span>accountId</span>
+		<span class="input-span">
+			<input
+			 id="accountId"
+			 bindinput="getinput"
+			 type="text"
+			 value="{{ accountId }}"
+			/>
+		</span>
+	</view>
+	<view class="item" wx:if="{{roomId}}">
+		<span>roomId</span>
+		<span class="input-span">
+			<input
+			 id="roomId"
+			 bindinput="getinput"
+			 type="text"
+			 value="{{ roomId }}"
+			/>
+		</span>
+	</view>
+	<view class="item" wx:if="{{recordId}}">
+		<span>recordId</span>
+		<span class="input-span">
+			<input
+			 id="recordId"
+			 bindinput="getinput"
+			 type="text"
+			 value="{{ recordId }}"
+			/>
+		</span>
+	</view>
+	<view class="item">
+		<span>token</span>
+		<span class="input-span">
+			<input
+			 id="token"
+			 bindinput="getinput"
+			 type="text"
+			 value="{{ token }}"
+			/>
+		</span>
+	</view>
+	<view class="item">
+		<button bindtap="gotoPlay">观看视频</button>
+	</view>
+</view>
+
